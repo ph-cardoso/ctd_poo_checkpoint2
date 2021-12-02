@@ -86,6 +86,7 @@ public class Board {
     }
 
     public void displayBoard() {
+        System.out.printf("\n\n");
         System.out.printf("\t     A   B   C   D   E   F   G   H \n");
         System.out.printf("\t                                   \n");
         System.out.printf("\t 8   %s | %s | %s | %s | %s | %s | %s | %s \n", board[7][0], board[7][1], board[7][2], board[7][3], board[7][4], board[7][5], board[7][6], board[7][7]);
@@ -106,6 +107,7 @@ public class Board {
     }
 
     public void displayBoardAndMoves() {
+        System.out.printf("\n\n");
         System.out.printf("\t     A   B   C   D   E   F   G   H \t\t     A   B   C   D   E   F   G   H \n");
         System.out.printf("\t                                   \t\t                                   \n");
         System.out.printf("\t 8   %s | %s | %s | %s | %s | %s | %s | %s \t\t 8   %s | %s | %s | %s | %s | %s | %s | %s \n", board[7][0], board[7][1], board[7][2], board[7][3], board[7][4], board[7][5], board[7][6], board[7][7], auxBoard[7][0], auxBoard[7][1], auxBoard[7][2], auxBoard[7][3], auxBoard[7][4], auxBoard[7][5], auxBoard[7][6], auxBoard[7][7]);

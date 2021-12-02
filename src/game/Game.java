@@ -75,7 +75,23 @@ public class Game {
         } while((board[pieceX][pieceY].isWhite() && !isWhiteTurn) || (!board[pieceX][pieceY].isWhite() && isWhiteTurn));
     }
 
-    private boolean checkWinner(){ return false;}
+    private boolean checkWinner(){
+        int counter = 0;
+
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(board[i][j].getClass().getSimpleName().equals("King")){
+                    counter++;
+                }
+            }
+        }
+
+        if(counter != 2){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public void startGame() {
         while(!this.checkWinner()){
@@ -83,9 +99,11 @@ public class Game {
             this.showGameStats();
             boardInstace.displayBoard();
             this.getUserPieceChoice();
+            ClearConsole.clearConsole();
             board[pieceX][pieceY].moveOperation(boardInstace, board, auxBoard);
             if(this.checkWinner()){
                 winner = isWhiteTurn ? "Brancas" : "Pretas";
+                break;
             }
 
             // Troca de turno
@@ -97,6 +115,11 @@ public class Game {
 
             turnCounter++;
         }
+
+        ClearConsole.clearConsole();
+        System.out.printf("\nAs peças %s ganharam!!!\n", winner);
+        System.out.printf("\nO jogo durou %d turnos\n\n", turnCounter);
+        sc.nextLine();
     }
 
 }

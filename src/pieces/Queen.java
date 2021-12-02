@@ -68,7 +68,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 1");
             // Reseta o contador
             i = super.getPosX();
             j = super.getPosY();
@@ -107,7 +106,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 2");
             // Reseta o contador
             i = super.getPosX();
             j = super.getPosY();
@@ -121,7 +119,6 @@ public class Queen extends Piece {
                 dir2--;
             }
 
-            System.out.println("Flag X");
             // Reseta o contador
             i = super.getPosX();
             j = super.getPosY();
@@ -147,7 +144,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 3");
             // Reseta o contador
             i = super.getPosX();
             j = super.getPosY();
@@ -187,7 +183,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 4");
             // Reseta o contador
             i = super.getPosX();
             j = super.getPosY();
@@ -202,7 +197,6 @@ public class Queen extends Piece {
                 dir4--;
             }
 
-            System.out.println("Flag 5");
             // Norte
             for(i = super.getPosX() + 1; i < 8; i++) {
                 if(board[i][super.getPosY()].toString().equals(" ")) {
@@ -217,7 +211,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 5");
             // Coloca um X no Moves nos movimentos Norte
             for(i = 0; i < dir5; i++) {
                 auxBoard[super.getPosX() + contador][super.getPosY()] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
@@ -241,7 +234,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 6");
             // Coloca um X no Moves nos movimentos Sul
             for(i = 0; i < dir6; i++) {
                 auxBoard[super.getPosX() - contador][super.getPosY()] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
@@ -264,7 +256,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 7");
             // Coloca um X no Moves nos movimentos Direita
             for(i = 0; i < dir7; i++) {
                 auxBoard[super.getPosX()][super.getPosY() + contador] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
@@ -288,7 +279,6 @@ public class Queen extends Piece {
                 }
             }
 
-            System.out.println("Flag 8");
             // Coloca um X no Moves nos movimentos possíveis
             for(i = 0; i < dir8; i++)
             {
