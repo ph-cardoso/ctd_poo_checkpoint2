@@ -5,6 +5,7 @@ import utils.ConsoleColors;
 import board.Board;
 
 public class King extends Piece {
+    Scanner sc = new Scanner(System.in);
 
     public King(boolean isWhite, int posX, int posY) {
         super(isWhite, posX, posY);
@@ -28,135 +29,312 @@ public class King extends Piece {
 
     @Override
     public int showValidMoves(Piece[][] board, String[][] auxBoard){
-        auxMoves[linha1][coluna1] = whiteKing;
-			if(tabuleiro[linha1 - 1][coluna1] == ' ') //Superior
-				key1++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1 - 1][coluna1] == black[i])
-					{
-						auxMoves[linha1 - 1][coluna1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key1 != 0)
-				auxMoves[linha1 - 1][coluna1] = 'X';
+        int dir1 = 0;
+        int dir2 = 0;
+        int dir3 = 0;
+        int dir4 = 0;
+        int dir5 = 0;
+        int dir6 = 0;
+        int dir7 = 0;
+        int dir8 = 0;
 
-			if(tabuleiro[linha1 - 1][coluna1 + 1] == ' ') //Diagonal superior direita
-				key2++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1 - 1][coluna1 + 1] == black[i])
-					{
-						auxMoves[linha1 - 1][coluna1 + 1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key2 != 0)
-				auxMoves[linha1 - 1][coluna1 + 1] = 'X';
+        int possiblePlays = 0;
 
-			if(tabuleiro[linha1 - 1][coluna1 - 1] == ' ') //Diagonal superior esquerda
-				key3++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1 - 1][coluna1 - 1] == black[i])
-					{
-						auxMoves[linha1 - 1][coluna1 - 1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key3 != 0)
-				auxMoves[linha1 - 1][coluna1 - 1] = 'X';
+        auxBoard[super.getPosX()][super.getPosY()] = this.toString();
 
-			if(tabuleiro[linha1][coluna1 + 1] == ' ') //Direita
-				key4++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1][coluna1 + 1] == black[i])
-					{
-						auxMoves[linha1][coluna1 + 1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key4 != 0)
-				auxMoves[linha1][coluna1 + 1] = 'X';
+        if(this.isWhite()){
+            if(super.getPosX() != 0){
+                if(board[super.getPosX() - 1][super.getPosY()].toString().equals(" ")) //Superior
+                    dir1++;
+                else
+                {
+                    if(!board[super.getPosX() - 1][super.getPosY()].isWhite())
+                    {
+                        auxBoard[super.getPosX() - 1][super.getPosY()] = board[super.getPosX() - 1][super.getPosY()].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
 
-			if(tabuleiro[linha1][coluna1 - 1] == ' ') //Esquerda
-				key5++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1][coluna1 - 1] == black[i])
-					{
-						auxMoves[linha1][coluna1 - 1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key5 != 0)
-				auxMoves[linha1][coluna1 - 1] = 'X';
+			if(dir1 != 0){
+                auxBoard[super.getPosX() - 1][super.getPosY()] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
 
-			if(tabuleiro[linha1 + 1][coluna1 - 1] == ' ') //Diagonal Inferior esquerda
-				key6++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1 + 1][coluna1 - 1] == black[i])
-					{
-						auxMoves[linha1 + 1][coluna1 - 1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key6 != 0)
-				auxMoves[linha1 + 1][coluna1 - 1] = 'X';
+            if(getPosX() != 0 && getPosY() != 7){
+                if(board[super.getPosX() - 1][super.getPosY() + 1].toString().equals(" ")) //Diagonal superior direita
+                    dir2++;
+                else
+                {
+                    if(!board[super.getPosX() - 1][super.getPosY() + 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() - 1][super.getPosY() + 1] = board[super.getPosX() - 1][super.getPosY() + 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
 
-			if(tabuleiro[linha1 + 1][coluna1 + 1] == ' ') //Diagonal inferior direita
-				key7++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1 + 1][coluna1 + 1] == black[i])
-					{
-						auxMoves[linha1 + 1][coluna1 + 1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key7 != 0)
-				auxMoves[linha1 + 1][coluna1 + 1] = 'X';
+			if(dir2 != 0){
+				auxBoard[super.getPosX() - 1][super.getPosY() + 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
 
-			if(tabuleiro[linha1 + 1][coluna1] == ' ') //Inferior
-				key8++;
-			else
-			{
-				for(i = 0; i < 6; i++)
-				{
-					if(tabuleiro[linha1 + 1][coluna1] == black[i])
-					{
-						auxMoves[linha1 + 1][coluna1] = black[i];
-						break;
-					}
-				}
-			}
-			if(key8 != 0)
-				auxMoves[linha1 + 1][coluna1] = 'X';
-    };
+            if(getPosX() != 0 && getPosY() != 0){
+                if(board[super.getPosX() - 1][super.getPosY() - 1].toString().equals(" ")) //Diagonal superior esquerda
+                    dir3++;
+                else
+                {
+                    if(!board[super.getPosX() - 1][super.getPosY() - 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() - 1][super.getPosY() - 1] = board[super.getPosX() - 1][super.getPosY() - 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+
+			if(dir3 != 0){
+				auxBoard[super.getPosX() - 1][super.getPosY() - 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosY() != 7){
+                if(board[super.getPosX()][super.getPosY() + 1].toString().equals(" ")) //Direita
+                    dir4++;
+                else
+                {
+                    if(!board[super.getPosX()][super.getPosY() + 1].isWhite())
+                    {
+                        auxBoard[super.getPosX()][super.getPosY() + 1] = board[super.getPosX()][super.getPosY() + 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir4 != 0){
+				auxBoard[super.getPosX()][super.getPosY() + 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosY() != 0){
+                if(board[super.getPosX()][super.getPosY() - 1].toString().equals(" ")) //Esquerda
+                    dir5++;
+                else
+                {
+                    if(!board[super.getPosX()][super.getPosY() - 1].isWhite())
+                    {
+                        auxBoard[super.getPosX()][super.getPosY() - 1] = board[super.getPosX()][super.getPosY() - 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir5 != 0){
+				auxBoard[super.getPosX()][super.getPosY() - 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 7 && getPosY() != 0){
+                if(board[super.getPosX() + 1][super.getPosY() - 1].toString().equals(" ")) //Diagonal Inferior esquerda
+                    dir6++;
+                else
+                {
+                    if(!board[super.getPosX() + 1][super.getPosY() - 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() + 1][super.getPosY() - 1] = board[super.getPosX() + 1][super.getPosY() - 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir6 != 0){
+				auxBoard[super.getPosX() + 1][super.getPosY() - 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 7 && getPosY() != 7){
+                if(board[super.getPosX() + 1][super.getPosY() + 1].toString().equals(" ")) //Diagonal inferior direita
+                    dir7++;
+                else
+                {
+                    if(!board[super.getPosX() + 1][super.getPosY() + 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() + 1][super.getPosY() + 1] = board[super.getPosX() + 1][super.getPosY() + 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir7 != 0){
+				auxBoard[super.getPosX() + 1][super.getPosY() + 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 7){
+                if(board[super.getPosX() + 1][super.getPosY()].toString().equals(" ")) //Inferior
+                    dir8++;
+                else
+                {
+                    if(!board[super.getPosX() + 1][super.getPosY()].isWhite())
+                    {
+                        auxBoard[super.getPosX() + 1][super.getPosY()] = board[super.getPosX() + 1][super.getPosY()].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir8 != 0){
+				auxBoard[super.getPosX() + 1][super.getPosY()] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+        } else {
+            if(super.getPosX() != 0){
+                if(board[super.getPosX() - 1][super.getPosY()].toString().equals(" ")) //Superior
+                    dir1++;
+                else
+                {
+                    if(board[super.getPosX() - 1][super.getPosY()].isWhite())
+                    {
+                        auxBoard[super.getPosX() - 1][super.getPosY()] = board[super.getPosX() - 1][super.getPosY()].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir1 != 0){
+                auxBoard[super.getPosX() - 1][super.getPosY()] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 0 && getPosY() != 7){
+                if(board[super.getPosX() - 1][super.getPosY() + 1].toString().equals(" ")) //Diagonal superior direita
+                    dir2++;
+                else
+                {
+                    if(board[super.getPosX() - 1][super.getPosY() + 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() - 1][super.getPosY() + 1] = board[super.getPosX() - 1][super.getPosY() + 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir2 != 0){
+				auxBoard[super.getPosX() - 1][super.getPosY() + 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 0 && getPosY() != 0){
+                if(board[super.getPosX() - 1][super.getPosY() - 1].toString().equals(" ")) //Diagonal superior esquerda
+                    dir3++;
+                else
+                {
+                    if(board[super.getPosX() - 1][super.getPosY() - 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() - 1][super.getPosY() - 1] = board[super.getPosX() - 1][super.getPosY() - 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir3 != 0){
+				auxBoard[super.getPosX() - 1][super.getPosY() - 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosY() != 7){
+                if(board[super.getPosX()][super.getPosY() + 1].toString().equals(" ")) //Direita
+                    dir4++;
+                else
+                {
+                    if(board[super.getPosX()][super.getPosY() + 1].isWhite())
+                    {
+                        auxBoard[super.getPosX()][super.getPosY() + 1] = board[super.getPosX()][super.getPosY() + 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir4 != 0){
+				auxBoard[super.getPosX()][super.getPosY() + 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosY() != 0){
+                if(board[super.getPosX()][super.getPosY() - 1].toString().equals(" ")) //Esquerda
+                    dir5++;
+                else
+                {
+                    if(board[super.getPosX()][super.getPosY() - 1].isWhite())
+                    {
+                        auxBoard[super.getPosX()][super.getPosY() - 1] = board[super.getPosX()][super.getPosY() - 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir5 != 0){
+				auxBoard[super.getPosX()][super.getPosY() - 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 7 && getPosY() != 0){
+                if(board[super.getPosX() + 1][super.getPosY() - 1].toString().equals(" ")) //Diagonal Inferior esquerda
+                    dir6++;
+                else
+                {
+                    if(board[super.getPosX() + 1][super.getPosY() - 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() + 1][super.getPosY() - 1] = board[super.getPosX() + 1][super.getPosY() - 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir6 != 0){
+				auxBoard[super.getPosX() + 1][super.getPosY() - 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 7 && getPosY() != 7){
+                if(board[super.getPosX() + 1][super.getPosY() + 1].toString().equals(" ")) //Diagonal inferior direita
+                    dir7++;
+                else
+                {
+                    if(board[super.getPosX() + 1][super.getPosY() + 1].isWhite())
+                    {
+                        auxBoard[super.getPosX() + 1][super.getPosY() + 1] = board[super.getPosX() + 1][super.getPosY() + 1].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir7 != 0){
+				auxBoard[super.getPosX() + 1][super.getPosY() + 1] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+
+            if(getPosX() != 7){
+                if(board[super.getPosX() + 1][super.getPosY()].toString().equals(" ")) //Inferior
+                    dir8++;
+                else
+                {
+                    if(board[super.getPosX() + 1][super.getPosY()].isWhite())
+                    {
+                        auxBoard[super.getPosX() + 1][super.getPosY()] = board[super.getPosX() + 1][super.getPosY()].toString();
+                        possiblePlays++;
+                    }
+                }
+            }
+
+			if(dir8 != 0){
+				auxBoard[super.getPosX() + 1][super.getPosY()] = (ConsoleColors.WHITE_BOLD_BRIGHT + "X" + ConsoleColors.RESET);
+                possiblePlays++;
+            }
+        }
+
+        return possiblePlays;
+    }
 
     @Override
     public int[] getUserPlayChoice(Piece[][] board, String[][] auxBoard){
